@@ -25,10 +25,10 @@ public class Reunions {
     public Reunions() {
     }
 
-    public Reunions(int id, String intitule, String resume) {
-        this.id = id;
+    public Reunions(String intitule, String resume, Utilisateurs utilisateurs) {
         this.intitule = intitule;
         this.resume = resume;
+        this.leResponsable = utilisateurs;
     }
 
     @Id
