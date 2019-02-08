@@ -15,13 +15,16 @@ public class Utilisateurs {
 
     private String email;
 
-    private List<Dates> dates = new ArrayList<Dates>();
+    private List<Dates> mesDates = new ArrayList<Dates>();
+
+    private List<Reunions> mesReunions = new ArrayList<Reunions>();
+
+    private List<Participants> mesParticipations = new ArrayList<Participants>();
 
     public Utilisateurs() {
     }
 
-    public Utilisateurs(int id, String nom, String prenom, String email) {
-        this.id = id;
+    public Utilisateurs(String nom, String prenom, String email) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -61,13 +64,31 @@ public class Utilisateurs {
         this.email = email;
     }
 
-    @ManyToMany
-    public List<Dates> getDates() {
-        return dates;
+    @ManyToMany (mappedBy = "mesUtilisateurs", cascade = CascadeType.REMOVE)
+    public List<Dates> getMesDates() {
+        return mesDates;
     }
 
-    public void setDates(List<Dates> dates) {
-        this.dates = dates;
+    public void setMesDates(List<Dates> mesDates) {
+        this.mesDates = mesDates;
+    }
+
+    @OneToMany(mappedBy = "leResponsable", cascade = CascadeType.REMOVE)
+    public List<Reunions> getMesReunions() {
+        return mesReunions;
+    }
+
+    public void setMesReunions(List<Reunions> mesReunions) {
+        this.mesReunions = mesReunions;
+    }
+
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.REMOVE)
+    public List<Participants> getMesParticipations() {
+        return mesParticipations;
+    }
+
+    public void setMesParticipations(List<Participants> mesParticipations) {
+        this.mesParticipations = mesParticipations;
     }
 
     @Override

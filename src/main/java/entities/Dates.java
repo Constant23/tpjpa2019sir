@@ -16,7 +16,7 @@ public class Dates {
 
     private Reunions reunion;
 
-    private List<Utilisateurs> utilisateurs;
+    private List<Utilisateurs> mesUtilisateurs;
 
     public Dates() {
     }
@@ -72,11 +72,11 @@ public class Dates {
     }
 
     @ManyToMany
-    public List<Utilisateurs> getUtilisateurs() {
-        return utilisateurs;
+    public List<Utilisateurs> getMesUtilisateurs() {
+        return mesUtilisateurs;
     }
 
-    public void setUtilisateurs(List<Utilisateurs> utilisateurs) {
-        this.utilisateurs = utilisateurs;
+    public void setMesUtilisateurs(List<Utilisateurs> mesUtilisateurs) {
+        this.mesUtilisateurs = mesUtilisateurs;
     }
 }

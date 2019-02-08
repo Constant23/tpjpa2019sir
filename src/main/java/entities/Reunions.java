@@ -1,9 +1,8 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Reunions {
@@ -17,7 +16,11 @@ public class Reunions {
 
     private String lienRapport;
 
-    private Utilisateurs responsable;
+    private Utilisateurs leResponsable;
+
+    private List<Dates> mesDates = new ArrayList<Dates>();
+
+    private List<Participants> mesParticipants = new ArrayList<Participants>();
 
     public Reunions() {
     }
@@ -71,11 +74,29 @@ public class Reunions {
     }
 
     @ManyToOne
-    public Utilisateurs getResponsable() {
-        return responsable;
+    public Utilisateurs getLeResponsable() {
+        return leResponsable;
     }
 
-    public void setResponsable(Utilisateurs responsable) {
-        this.responsable = responsable;
+    public void setLeResponsable(Utilisateurs leResponsable) {
+        this.leResponsable = leResponsable;
+    }
+
+    @OneToMany(mappedBy = "reunion", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    public List<Dates> getMesDates() {
+        return mesDates;
+    }
+
+    public void setMesDates(List<Dates> mesDates) {
+        this.mesDates = mesDates;
+    }
+
+    @OneToMany(mappedBy = "reunion", cascade = CascadeType.REMOVE)
+    public List<Participants> getMesParticipants() {
+        return mesParticipants;
+    }
+
+    public void setMesParticipants(List<Participants> mesParticipants) {
+        this.mesParticipants = mesParticipants;
     }
 }
