@@ -15,6 +15,8 @@ public class Participants {
 
     private String allergies;
 
+    private String clearCode;
+
     private boolean present;
 
     private Utilisateurs utilisateur;
@@ -27,6 +29,10 @@ public class Participants {
     public Participants(Utilisateurs utilisateur, Reunions reunion) {
         this.utilisateur = utilisateur;
         this.reunion = reunion;
+        this.lienUnique = "doodle.com/" + reunion.getIntitule() + "/" + utilisateur.getEmail();
+        this.present = false;
+        this.clearCode = "clearCode_" + utilisateur.getEmail();
+
     }
 
     @Id
@@ -61,6 +67,14 @@ public class Participants {
 
     public void setAllergies(String allergies) {
         this.allergies = allergies;
+    }
+
+    public String getClearCode() {
+        return clearCode;
+    }
+
+    public void setClearCode(String clearCode) {
+        this.clearCode = clearCode;
     }
 
     public boolean isPresent() {
