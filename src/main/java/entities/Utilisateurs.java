@@ -64,7 +64,7 @@ public class Utilisateurs {
         this.email = email;
     }
 
-    @ManyToMany (mappedBy = "mesUtilisateurs", cascade = CascadeType.REMOVE)
+    @ManyToMany (mappedBy = "mesUtilisateurs")
     public List<Dates> getMesDates() {
         return mesDates;
     }

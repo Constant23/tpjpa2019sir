@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,7 +17,7 @@ public class Dates {
 
     private Reunions reunion;
 
-    private List<Utilisateurs> mesUtilisateurs;
+    private List<Utilisateurs> mesUtilisateurs = new ArrayList<Utilisateurs>();
 
     public Dates() {
     }
@@ -71,12 +72,28 @@ public class Dates {
         this.reunion = reunion;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
     public List<Utilisateurs> getMesUtilisateurs() {
         return mesUtilisateurs;
     }
 
     public void setMesUtilisateurs(List<Utilisateurs> mesUtilisateurs) {
         this.mesUtilisateurs = mesUtilisateurs;
+    }
+
+    public void addUtilisateurs(Utilisateurs utilisateur) {
+        mesUtilisateurs.add(utilisateur);
+        utilisateur.getMesDates().add(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Dates{" +
+                "id=" + id +
+                ", date=" + date +
+                '}';
     }
 }

@@ -99,4 +99,16 @@ public class Reunions {
     public void setMesParticipants(List<Participants> mesParticipants) {
         this.mesParticipants = mesParticipants;
     }
+
+    @Override
+    public String toString() {
+        return "Reunions{" +
+                "id=" + id +
+                ", intitule='" + intitule + '\'' +
+                ", resume='" + resume + '\'' +
+                ", lienInscription='" + lienInscription + '\'' +
+                ", lienRapport='" + lienRapport + '\'' +
+                ", leResponsable=" + leResponsable +
+                '}';
+    }
 }
