@@ -82,8 +82,8 @@ public class JpaTest {
     }
 
     private void createReunion(Utilisateurs utilisateurs) throws ParseException {
-         _reunions = new Reunions("Point de stage constant",
-                "Nous allons parler " + "de la suite de son stage",utilisateurs );
+        // _reunions = new Reunions("Point de stage constant",
+        //        "Nous allons parler " + "de la suite de son stage",utilisateurs );
 
 
         manager.persist(_reunions);

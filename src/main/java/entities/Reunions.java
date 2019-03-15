@@ -1,11 +1,13 @@
 package entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Reunions {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Reunions implements Serializable {
     private int id;
 
     private String intitule;
@@ -19,6 +21,10 @@ public class Reunions {
     private Utilisateurs leResponsable;
 
     private List<Dates> mesDates = new ArrayList<Dates>();
+
+    private List<Lieus> mesLieus = new ArrayList<Lieus>();
+
+    private List<DatesLieus> mesDatesLieus = new ArrayList<DatesLieus>();
 
     private List<Participants> mesParticipants = new ArrayList<Participants>();
 

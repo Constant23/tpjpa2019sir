@@ -7,9 +7,9 @@ import java.util.List;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-public class Dates extends Reunions {
+public class Lieus extends Reunions {
 
-    private Date date;
+    private String lieu;
 
     private boolean estValider;
 
@@ -19,23 +19,23 @@ public class Dates extends Reunions {
 
     private List<Utilisateurs> mesUtilisateurs = new ArrayList<Utilisateurs>();
 
-    public Dates() {
+    public Lieus() {
     }
 
-    public Dates(Date date, boolean estValider, boolean aUnDejeuner, Reunions reunion) {
-        this.date = date;
+    public Lieus(String lieu, boolean estValider, boolean aUnDejeuner, Reunions reunion) {
+        this.lieu = lieu;
         this.estValider = estValider;
         this.aUnDejeuner = aUnDejeuner;
         this.reunion = reunion;
     }
 
 
-    public Date getDate() {
-        return date;
+    public String getLieu() {
+        return lieu;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
     }
 
     public boolean isEstValider() {
@@ -77,13 +77,13 @@ public class Dates extends Reunions {
 
     public void addUtilisateurs(Utilisateurs utilisateur) {
         mesUtilisateurs.add(utilisateur);
-        utilisateur.getMesDates().add(this);
+       // utilisateur.getMesDates().add(this);
     }
 
-    @Override
-    public String toString() {
-        return "Dates{" +
-                ", date=" + date +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Dates{" +
+//                ", date=" + date +
+//                '}';
+//    }
 }
