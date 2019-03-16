@@ -1,13 +1,12 @@
 package entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Reunions implements Serializable {
+public abstract class Sondages  {
     private int id;
 
     private String intitule;
@@ -20,18 +19,14 @@ public abstract class Reunions implements Serializable {
 
     private Utilisateurs leResponsable;
 
-    private List<Dates> mesDates = new ArrayList<Dates>();
-
-    private List<Lieus> mesLieus = new ArrayList<Lieus>();
-
-    private List<DatesLieus> mesDatesLieus = new ArrayList<DatesLieus>();
-
     private List<Participants> mesParticipants = new ArrayList<Participants>();
 
-    public Reunions() {
+    private List<Propositions> mesPropositions = new ArrayList<Propositions>();
+
+    public Sondages() {
     }
 
-    public Reunions(String intitule, String resume, Utilisateurs utilisateurs) {
+    public Sondages(String intitule, String resume, Utilisateurs utilisateurs) {
         this.intitule = intitule;
         this.resume = resume;
         this.leResponsable = utilisateurs;
@@ -88,16 +83,16 @@ public abstract class Reunions implements Serializable {
         this.leResponsable = leResponsable;
     }
 
-    @OneToMany(mappedBy = "reunion", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
-    public List<Dates> getMesDates() {
-        return mesDates;
+    @OneToMany(mappedBy = "sondage", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    public List<Propositions> getMesPropositions() {
+        return mesPropositions;
     }
 
-    public void setMesDates(List<Dates> mesDates) {
-        this.mesDates = mesDates;
+    public void setMesPropositions(List<Propositions> mesPropositions) {
+        this.mesPropositions = mesPropositions;
     }
 
-    @OneToMany(mappedBy = "reunion", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "sondage", cascade = CascadeType.REMOVE)
     public List<Participants> getMesParticipants() {
         return mesParticipants;
     }
@@ -108,13 +103,15 @@ public abstract class Reunions implements Serializable {
 
     @Override
     public String toString() {
-        return "Reunions{" +
+        return "Sondages{" +
                 "id=" + id +
                 ", intitule='" + intitule + '\'' +
                 ", resume='" + resume + '\'' +
                 ", lienInscription='" + lienInscription + '\'' +
                 ", lienRapport='" + lienRapport + '\'' +
                 ", leResponsable=" + leResponsable +
+                ", mesParticipants=" + mesParticipants +
+                ", mesPropositions=" + mesPropositions +
                 '}';
     }
 }

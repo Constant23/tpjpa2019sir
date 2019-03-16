@@ -1,17 +1,13 @@
 package jpa;
 
-import entities.Dates;
-import entities.Participants;
-import entities.Reunions;
+
 import entities.Utilisateurs;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +19,8 @@ public class JpaTest {
     }
 
     private List<Utilisateurs> allUtilisateurs = new ArrayList<Utilisateurs>();
-    private List<Dates> allDates = new ArrayList<Dates>();
-    private Reunions _reunions ;
+    //private List<Dates> allDates = new ArrayList<Dates>();
+    //private Sondages _sondages;
 
 
     /**
@@ -45,7 +41,7 @@ public class JpaTest {
         }
         tx.commit();
 
-        test.listUtilisateurs();
+        //test.listUtilisateurs();
 
         manager.close();
         System.out.println("fin des operations");
@@ -78,22 +74,22 @@ public class JpaTest {
 
        // manager.remove(utilisateurs3);
 
-        this.createReunion(utilisateurs1);
+        //this.createReunion(utilisateurs1);
     }
 
-    private void createReunion(Utilisateurs utilisateurs) throws ParseException {
-        // _reunions = new Reunions("Point de stage constant",
+    /*private void createReunion(Utilisateurs utilisateurs) throws ParseException {
+        // _sondages = new Sondages("Point de stage constant",
         //        "Nous allons parler " + "de la suite de son stage",utilisateurs );
 
 
-        manager.persist(_reunions);
+        manager.persist(_sondages);
 
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
 
-            Dates dates1 = new Dates(new Date(sdf.parse("2019-03-25 10:00:00").getTime()), false,false,_reunions);
-            Dates dates2 = new Dates(new Date(sdf.parse("2019-03-26 10:00:00").getTime()), false,false,_reunions);
-            Dates dates3 = new Dates(new Date(sdf.parse("2019-03-27 12:00:00").getTime()), false,true,_reunions);
+            Dates dates1 = new Dates(new Date(sdf.parse("2019-03-25 10:00:00").getTime()), false,false, _sondages);
+            Dates dates2 = new Dates(new Date(sdf.parse("2019-03-26 10:00:00").getTime()), false,false, _sondages);
+            Dates dates3 = new Dates(new Date(sdf.parse("2019-03-27 12:00:00").getTime()), false,true, _sondages);
 
             allDates.add(dates1);
             allDates.add(dates2);
@@ -105,14 +101,14 @@ public class JpaTest {
         }
 
 
-        createDate(_reunions,allDates);
-    }
+        createDate(_sondages,allDates);
+    }*/
 
 
-    private void createDate(Reunions reunions, List<Dates> dates){
+ /*    private void createDate(Sondages sondages, List<Dates> dates){
 
-        reunions.setMesDates(dates);
-        manager.persist(reunions);
+       sondages.setMesDates(dates);
+        manager.persist(sondages);
 
         List<Dates> datesList = new ArrayList<Dates>();
         //date choisir user 1
@@ -133,31 +129,31 @@ public class JpaTest {
         datesList.add(dates.get(2));
         choixDateUser(allUtilisateurs.get(3),datesList);
 
-        validerDate(_reunions,dates.get(0));
+        validerDate(_sondages,dates.get(0));
+
+
+    }*/
+
+   /* private void choixDateUser(Utilisateurs utilisateur, List<Dates> dates){
+
+//        for (Dates date: dates
+//             ) {
+//            date.addUtilisateurs(utilisateur);
+//            manager.persist(date);
+//
+//        }
+
 
 
     }
 
-    private void choixDateUser(Utilisateurs utilisateur, List<Dates> dates){
-
-        for (Dates date: dates
-             ) {
-            date.addUtilisateurs(utilisateur);
-            manager.persist(date);
-
-        }
-
-
-
-    }
-
-    private void validerDate(Reunions reunions, Dates dates){
+    private void validerDate(Sondages sondages, Dates dates){
         dates.setEstValider(true);
 
-        informerParticipant(reunions);
+        informerParticipant(sondages);
     }
 
-    private void informerParticipant(Reunions reunion){
+    private void informerParticipant(Sondages reunion){
         int idReunion = reunion.getId();
         List<Dates> resultList = manager.createQuery("Select d From Dates d where d.reunion = :reunion_id and d.estValider=true" ).setParameter("reunion_id",reunion).getResultList();
         System.out.println("datechoisir :" + resultList.get(0).getMesUtilisateurs().size());
@@ -169,13 +165,7 @@ public class JpaTest {
     }
 
 
-    private void listUtilisateurs() {
-        List<Utilisateurs> resultList = manager.createQuery("Select u From Utilisateurs u", Utilisateurs.class).getResultList();
-        System.out.println("num of Utilisateur:" + resultList.size());
-        for (Utilisateurs next : resultList) {
-            System.out.println("next Utilisateur: " + next);
-        }
-    }
+
 
 
     private void listerDates() {
@@ -187,13 +177,6 @@ public class JpaTest {
     }
 
 
-    private void listerReunions() {
-        List<Reunions> resultList = manager.createQuery("Select u From Reunions u", Reunions.class).getResultList();
-        System.out.println("Reunion:" + resultList.size());
-        for (Reunions next : resultList) {
-            System.out.println("next Reunion: " + next);
-        }
-    }
 
     private void suppressionDate() {
         Dates date1 = allDates.get(1);
@@ -208,7 +191,7 @@ public class JpaTest {
     }
 
     private void suppressionReunion() {
-        Reunions reunion = manager.find(Reunions.class, _reunions.getId());
+        Sondages reunion = manager.find(Sondages.class, _sondages.getId());
         System.out.println("taille = " + reunion.toString());
         manager.getTransaction().begin();
         manager.remove(reunion);
@@ -218,5 +201,13 @@ public class JpaTest {
 
 
 
+    private void listUtilisateurs() {
+        List<Utilisateurs> resultList = manager.createQuery("Select u From Utilisateurs u", Utilisateurs.class).getResultList();
+        System.out.println("num of Utilisateur:" + resultList.size());
+        for (Utilisateurs next : resultList) {
+            System.out.println("next Utilisateur: " + next);
+        }
+    }
+*/
 
 }

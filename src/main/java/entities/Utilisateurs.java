@@ -15,9 +15,9 @@ public class Utilisateurs {
 
     private String email;
 
-    private List<Dates> mesDates = new ArrayList<Dates>();
+    private List<Propositions> mesProposition = new ArrayList<Propositions>();
 
-    private List<Reunions> mesReunions = new ArrayList<Reunions>();
+    private List<Sondages> mesSondages = new ArrayList<Sondages>();
 
     private List<Participants> mesParticipations = new ArrayList<Participants>();
 
@@ -65,21 +65,21 @@ public class Utilisateurs {
     }
 
     @ManyToMany (mappedBy = "mesUtilisateurs")
-    public List<Dates> getMesDates() {
-        return mesDates;
+    public List<Propositions> getMesProposition() {
+        return mesProposition;
     }
 
-    public void setMesDates(List<Dates> mesDates) {
-        this.mesDates = mesDates;
+    public void setMesProposition(List<Propositions> mesProposition) {
+        this.mesProposition = mesProposition;
     }
 
     @OneToMany(mappedBy = "leResponsable", cascade = CascadeType.REMOVE)
-    public List<Reunions> getMesReunions() {
-        return mesReunions;
+    public List<Sondages> getMesSondages() {
+        return mesSondages;
     }
 
-    public void setMesReunions(List<Reunions> mesReunions) {
-        this.mesReunions = mesReunions;
+    public void setMesSondages(List<Sondages> mesSondages) {
+        this.mesSondages = mesSondages;
     }
 
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.REMOVE)

@@ -21,15 +21,15 @@ public class Participants {
 
     private Utilisateurs utilisateur;
 
-    private Reunions reunion;
+    private Sondages sondage;
 
     public Participants() {
     }
 
-    public Participants(Utilisateurs utilisateur, Reunions reunion) {
+    public Participants(Utilisateurs utilisateur, Sondages sondage) {
         this.utilisateur = utilisateur;
-        this.reunion = reunion;
-        this.lienUnique = "doodle.com/" + reunion.getIntitule() + "/" + utilisateur.getEmail();
+        this.sondage = sondage;
+        this.lienUnique = "doodle.com/" + sondage.getIntitule() + "/" + utilisateur.getEmail();
         this.present = false;
         this.clearCode = "clearCode_" + utilisateur.getEmail();
 
@@ -95,11 +95,25 @@ public class Participants {
     }
 
     @ManyToOne
-    public Reunions getReunion() {
-        return reunion;
+    public Sondages getSondage() {
+        return sondage;
     }
 
-    public void setReunion(Reunions reunion) {
-        this.reunion = reunion;
+    public void setSondage(Sondages sondage) {
+        this.sondage = sondage;
+    }
+
+    @Override
+    public String toString() {
+        return "Participants{" +
+                "id=" + id +
+                ", lienUnique='" + lienUnique + '\'' +
+                ", preference='" + preference + '\'' +
+                ", allergies='" + allergies + '\'' +
+                ", clearCode='" + clearCode + '\'' +
+                ", present=" + present +
+                ", utilisateur=" + utilisateur +
+                ", sondage=" + sondage +
+                '}';
     }
 }
