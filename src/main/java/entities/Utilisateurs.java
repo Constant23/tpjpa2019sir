@@ -3,6 +3,7 @@ package entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -15,7 +16,8 @@ public class Utilisateurs {
 
     private String email;
 
-    private List<Propositions> mesProposition = new ArrayList<Propositions>();
+    @ManyToMany(mappedBy="mesUtilisateurs")
+    private Collection<Propositions> mesPropositions ;
 
     private List<Sondages> mesSondages = new ArrayList<Sondages>();
 
@@ -64,14 +66,7 @@ public class Utilisateurs {
         this.email = email;
     }
 
-    @ManyToMany (mappedBy = "mesUtilisateurs")
-    public List<Propositions> getMesProposition() {
-        return mesProposition;
-    }
 
-    public void setMesProposition(List<Propositions> mesProposition) {
-        this.mesProposition = mesProposition;
-    }
 
     @OneToMany(mappedBy = "leResponsable", cascade = CascadeType.REMOVE)
     public List<Sondages> getMesSondages() {

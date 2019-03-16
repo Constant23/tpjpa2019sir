@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -19,9 +20,8 @@ public abstract class Propositions implements Serializable {
 
     private boolean aUnDejeuner;
 
-    private Sondages sondage;
-
-    private List<Utilisateurs> mesUtilisateurs = new ArrayList<Utilisateurs>();
+    @ManyToMany
+    private Collection<Utilisateurs> mesUtilisateurs ;
 
     public int getId() {
         return id;
@@ -47,26 +47,8 @@ public abstract class Propositions implements Serializable {
         this.aUnDejeuner = aUnDejeuner;
     }
 
-    @ManyToOne
-    public Sondages getSondage() {
-        return sondage;
-    }
 
-    public void setSondage(Sondages sondage) {
-        this.sondage = sondage;
-    }
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    public List<Utilisateurs> getMesUtilisateurs() {
-        return mesUtilisateurs;
-    }
-
-    public void setMesUtilisateurs(List<Utilisateurs> mesUtilisateurs) {
-        this.mesUtilisateurs = mesUtilisateurs;
-    }
 
     @Override
     public String toString() {
@@ -74,7 +56,6 @@ public abstract class Propositions implements Serializable {
                 "id=" + id +
                 ", estValider=" + estValider +
                 ", aUnDejeuner=" + aUnDejeuner +
-                ", sondage=" + sondage +
                 '}';
     }
 }

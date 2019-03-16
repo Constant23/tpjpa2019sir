@@ -21,7 +21,6 @@ public abstract class Sondages  {
 
     private List<Participants> mesParticipants = new ArrayList<Participants>();
 
-    private List<Propositions> mesPropositions = new ArrayList<Propositions>();
 
     public Sondages() {
     }
@@ -83,14 +82,6 @@ public abstract class Sondages  {
         this.leResponsable = leResponsable;
     }
 
-    @OneToMany(mappedBy = "sondage", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
-    public List<Propositions> getMesPropositions() {
-        return mesPropositions;
-    }
-
-    public void setMesPropositions(List<Propositions> mesPropositions) {
-        this.mesPropositions = mesPropositions;
-    }
 
     @OneToMany(mappedBy = "sondage", cascade = CascadeType.REMOVE)
     public List<Participants> getMesParticipants() {
@@ -111,7 +102,6 @@ public abstract class Sondages  {
                 ", lienRapport='" + lienRapport + '\'' +
                 ", leResponsable=" + leResponsable +
                 ", mesParticipants=" + mesParticipants +
-                ", mesPropositions=" + mesPropositions +
                 '}';
     }
 }
