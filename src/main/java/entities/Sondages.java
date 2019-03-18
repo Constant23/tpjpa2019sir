@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -21,6 +22,8 @@ public abstract class Sondages  {
 
     private List<Participants> mesParticipants = new ArrayList<Participants>();
 
+    @OneToMany (mappedBy = "monSondage")
+    private Collection<Propositions> mesPropositions ;
 
     public Sondages() {
     }
@@ -101,7 +104,6 @@ public abstract class Sondages  {
                 ", lienInscription='" + lienInscription + '\'' +
                 ", lienRapport='" + lienRapport + '\'' +
                 ", leResponsable=" + leResponsable +
-                ", mesParticipants=" + mesParticipants +
                 '}';
     }
 }

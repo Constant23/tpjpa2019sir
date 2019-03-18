@@ -23,6 +23,9 @@ public abstract class Propositions implements Serializable {
     @ManyToMany
     private Collection<Utilisateurs> mesUtilisateurs ;
 
+    @ManyToOne
+    private Sondages monSondage;
+
     public int getId() {
         return id;
     }
