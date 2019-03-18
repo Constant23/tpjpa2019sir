@@ -88,7 +88,7 @@ public class Utilisateurs {
 
     @Override
     public String toString() {
-        return "Utilisateurs{" +
+        return "Utilisateurs {" +
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
