@@ -7,7 +7,7 @@ import java.util.List;
 
 
 @Entity
-public abstract class Sondages  {
+public  class Sondages  {
     private int id;
 
     private String intitule;
@@ -22,8 +22,16 @@ public abstract class Sondages  {
 
     private List<Participants> mesParticipants = new ArrayList<Participants>();
 
-    @OneToMany (mappedBy = "monSondage")
     private Collection<Propositions> mesPropositions ;
+
+    @OneToMany (mappedBy = "monSondage")
+    public Collection<Propositions> getMesPropositions() {
+        return mesPropositions;
+    }
+
+    public void setMesPropositions(Collection<Propositions> mesPropositions) {
+        this.mesPropositions = mesPropositions;
+    }
 
     public Sondages() {
     }

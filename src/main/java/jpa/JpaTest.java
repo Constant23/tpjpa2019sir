@@ -77,7 +77,7 @@ public class JpaTest {
         //this.createReunion(utilisateurs1);
     }
 
-    /*private void createReunion(Utilisateurs utilisateurs) throws ParseException {
+    /*private void createReunion(UtilisateursService utilisateurs) throws ParseException {
         // _sondages = new Sondages("Point de stage constant",
         //        "Nous allons parler " + "de la suite de son stage",utilisateurs );
 
@@ -134,7 +134,7 @@ public class JpaTest {
 
     }*/
 
-   /* private void choixDateUser(Utilisateurs utilisateur, List<Dates> dates){
+   /* private void choixDateUser(UtilisateursService utilisateur, List<Dates> dates){
 
 //        for (Dates date: dates
 //             ) {
@@ -157,7 +157,7 @@ public class JpaTest {
         int idReunion = reunion.getId();
         List<Dates> resultList = manager.createQuery("Select d From Dates d where d.reunion = :reunion_id and d.estValider=true" ).setParameter("reunion_id",reunion).getResultList();
         System.out.println("datechoisir :" + resultList.get(0).getMesUtilisateurs().size());
-        for (Utilisateurs utilisateur:resultList.get(0).getMesUtilisateurs()) {
+        for (UtilisateursService utilisateur:resultList.get(0).getMesUtilisateurs()) {
             Participants participants = new Participants(utilisateur,reunion);
             manager.persist(participants);
         }
@@ -201,10 +201,10 @@ public class JpaTest {
 
 
 
-    private void listUtilisateurs() {
-        List<Utilisateurs> resultList = manager.createQuery("Select u From Utilisateurs u", Utilisateurs.class).getResultList();
+    public List<rest.UtilisateursService> listUtilisateurs() {
+        List<UtilisateursService> resultList = manager.createQuery("Select u From UtilisateursService u", UtilisateursService.class).getResultList();
         System.out.println("num of Utilisateur:" + resultList.size());
-        for (Utilisateurs next : resultList) {
+        for (UtilisateursService next : resultList) {
             System.out.println("next Utilisateur: " + next);
         }
     }
