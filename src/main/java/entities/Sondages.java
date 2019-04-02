@@ -1,5 +1,9 @@
 package entities;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,12 +29,13 @@ public  class Sondages  {
     private Collection<Propositions> mesPropositions ;
 
     @OneToMany (mappedBy = "monSondage")
+    @JsonManagedReference
     public Collection<Propositions> getMesPropositions() {
         return mesPropositions;
     }
 
     public void setMesPropositions(Collection<Propositions> mesPropositions) {
-        this.mesPropositions = mesPropositions;
+        this.mesPropositions =  mesPropositions;
     }
 
     public Sondages() {
@@ -85,6 +90,7 @@ public  class Sondages  {
     }
 
     @ManyToOne
+    @JsonBackReference
     public Utilisateurs getLeResponsable() {
         return leResponsable;
     }

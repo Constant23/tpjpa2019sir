@@ -73,12 +73,14 @@ public class SondageDAO {
         }
     }
 
-    /*public void addDates(Sondages sondage, Dates dates) {
+    public void addDates(Sondages sondage, List<Dates> dates) {
         tx.begin();
-        sondage.getMesPropositions()..  add(proposition);
+        for(Dates d : dates) {
+            sondage.getMesPropositions().add(d);
+        }
         manager.merge(sondage);
         tx.commit();
-    }*/
+    }
 
 
 }

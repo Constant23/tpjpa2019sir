@@ -1,5 +1,7 @@
 package entities;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,6 +9,9 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Participants {
+
+    @Id
+    @GeneratedValue
     private int id;
 
     private String lienUnique;
@@ -19,8 +24,11 @@ public class Participants {
 
     private boolean present;
 
+    @ManyToOne
+    @JsonBackReference
     private Utilisateurs utilisateur;
 
+    @ManyToOne
     private Sondages sondage;
 
     public Participants() {
@@ -35,8 +43,6 @@ public class Participants {
 
     }
 
-    @Id
-    @GeneratedValue
     public int getId() {
         return id;
     }
@@ -85,7 +91,6 @@ public class Participants {
         this.present = present;
     }
 
-    @ManyToOne
     public Utilisateurs getUtilisateur() {
         return utilisateur;
     }
@@ -94,7 +99,6 @@ public class Participants {
         this.utilisateur = utilisateur;
     }
 
-    @ManyToOne
     public Sondages getSondage() {
         return sondage;
     }

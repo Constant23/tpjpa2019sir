@@ -1,24 +1,15 @@
 package DAO;
 
-
-
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import entities.Utilisateurs;
+import jpa.EntityManagerHelper;
 
 
 public class UtilisateurDAO {
-    EntityManagerFactory factory = Persistence
-            .createEntityManagerFactory("mysql");
-    EntityManager manager = factory.createEntityManager();
+    EntityManager manager = EntityManagerHelper.getEntityManager();
     EntityTransaction tx = manager.getTransaction();
 
     public Utilisateurs add(String nom, String prenom, String email) {
@@ -36,18 +27,14 @@ public class UtilisateurDAO {
         return u;
     }
 
-
     public Utilisateurs update(int id, String nom, String prenom, String email) {
         tx.begin();
         Utilisateurs u = manager.find(Utilisateurs.class, id);
         try {
-
             u.setNom(nom);
             u.setPrenom(prenom);
             u.setEmail(email);
-
-            manager.persist(u);
-
+            manager.merge(u);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -65,13 +52,9 @@ public class UtilisateurDAO {
     }
 
     public void deleteById(int id) {
-        List<Utilisateurs> resultList = manager.createQuery("Select u From Utilisateurs u where id = '" + id + "'", Utilisateurs.class).getResultList();
-        for (Utilisateurs x : resultList) {
-            tx.begin();
-            manager.remove(x);
-            tx.commit();
-        }
+        Utilisateurs utilisateurs = manager.find(Utilisateurs.class, id);
+        tx.begin();
+        manager.remove(utilisateurs);
+        tx.commit();
     }
-
-
 }

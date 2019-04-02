@@ -1,5 +1,7 @@
 package entities;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,10 +22,20 @@ public abstract class Propositions implements Serializable {
 
     private boolean aUnDejeuner;
 
+    public Propositions() {
+
+    }
+
+    public Propositions (Boolean estValider, Boolean aUnDejeuner){
+        this.estValider = estValider;
+        this.aUnDejeuner = aUnDejeuner;
+    }
+
     @ManyToMany
     private Collection<Utilisateurs> mesUtilisateurs ;
 
     @ManyToOne
+    @JsonBackReference
     private Sondages monSondage;
 
     public int getId() {
@@ -50,8 +62,13 @@ public abstract class Propositions implements Serializable {
         this.aUnDejeuner = aUnDejeuner;
     }
 
+    public Sondages getMonSondage() {
+        return monSondage;
+    }
 
-
+    public void setMonSondage(Sondages monSondage) {
+        this.monSondage = monSondage;
+    }
 
     @Override
     public String toString() {

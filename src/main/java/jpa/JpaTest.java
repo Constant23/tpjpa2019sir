@@ -1,14 +1,21 @@
 package jpa;
 
 
+import DAO.UtilisateurDAO;
+import entities.Dates;
+import entities.Propositions;
+import entities.Sondages;
 import entities.Utilisateurs;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.sql.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class JpaTest {
@@ -19,8 +26,8 @@ public class JpaTest {
     }
 
     private List<Utilisateurs> allUtilisateurs = new ArrayList<Utilisateurs>();
-    //private List<Dates> allDates = new ArrayList<Dates>();
-    //private Sondages _sondages;
+    private Collection<Dates> allDates = new ArrayList<Dates>();
+    private Sondages _sondages;
 
 
     /**
@@ -41,7 +48,7 @@ public class JpaTest {
         }
         tx.commit();
 
-        //test.listUtilisateurs();
+       // test.listUtilisateurs();
 
         manager.close();
         System.out.println("fin des operations");
@@ -74,12 +81,12 @@ public class JpaTest {
 
        // manager.remove(utilisateurs3);
 
-        //this.createReunion(utilisateurs1);
+        this.createReunion(utilisateurs1);
     }
 
-    /*private void createReunion(UtilisateursService utilisateurs) throws ParseException {
-        // _sondages = new Sondages("Point de stage constant",
-        //        "Nous allons parler " + "de la suite de son stage",utilisateurs );
+     private void createReunion(Utilisateurs utilisateurs) throws ParseException {
+         _sondages = new Sondages("Point de stage constant",
+                "Nous allons parler " + "de la suite de son stage",utilisateurs );
 
 
         manager.persist(_sondages);
@@ -87,13 +94,15 @@ public class JpaTest {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
 
-            Dates dates1 = new Dates(new Date(sdf.parse("2019-03-25 10:00:00").getTime()), false,false, _sondages);
-            Dates dates2 = new Dates(new Date(sdf.parse("2019-03-26 10:00:00").getTime()), false,false, _sondages);
-            Dates dates3 = new Dates(new Date(sdf.parse("2019-03-27 12:00:00").getTime()), false,true, _sondages);
 
-            allDates.add(dates1);
-            allDates.add(dates2);
-            allDates.add(dates3);
+            Dates dates1 = new Dates(new Date(sdf.parse("2019-03-25 10:00:00").getTime()), false,false,_sondages);
+            Dates dates2 = new Dates(new Date(sdf.parse("2019-03-26 10:00:00").getTime()), false,false,_sondages);
+            Dates dates3 = new Dates(new Date(sdf.parse("2019-03-27 12:00:00").getTime()), false,true,_sondages);
+
+            manager.persist(dates1);
+            manager.persist(dates2);
+            manager.persist(dates3);
+
 
         } catch (ParseException e) {
             //Handle exception here, most of the time you will just log it.
@@ -101,14 +110,14 @@ public class JpaTest {
         }
 
 
-        createDate(_sondages,allDates);
-    }*/
+        //createDate(_sondages,allDates);
+    }
 
 
- /*    private void createDate(Sondages sondages, List<Dates> dates){
+    /*private void createDate(Sondages sondages, Collection<Dates> dates){
 
-       sondages.setMesDates(dates);
-        manager.persist(sondages);
+       sondages.setMesPropositions(dates);
+       manager.persist(sondages);
 
         List<Dates> datesList = new ArrayList<Dates>();
         //date choisir user 1
@@ -129,7 +138,7 @@ public class JpaTest {
         datesList.add(dates.get(2));
         choixDateUser(allUtilisateurs.get(3),datesList);
 
-        validerDate(_sondages,dates.get(0));
+        //validerDate(_sondages,dates.get(0));
 
 
     }*/
@@ -199,15 +208,20 @@ public class JpaTest {
 
     }
 
+*/
 
+    public void listUtilisateurs() {
+       // List<Utilisateurs> resultList = manager.createQuery("Select u From Utilisateurs u", Utilisateurs.class).getResultList();
+        //System.out.println("num of Utilisateur:" + resultList.size());
 
-    public List<rest.UtilisateursService> listUtilisateurs() {
-        List<UtilisateursService> resultList = manager.createQuery("Select u From UtilisateursService u", UtilisateursService.class).getResultList();
-        System.out.println("num of Utilisateur:" + resultList.size());
-        for (UtilisateursService next : resultList) {
+        UtilisateurDAO udao = new UtilisateurDAO();
+
+        List<Utilisateurs> resultList = udao.findAll();
+
+        for (Utilisateurs next : resultList) {
             System.out.println("next Utilisateur: " + next);
         }
     }
-*/
+
 
 }

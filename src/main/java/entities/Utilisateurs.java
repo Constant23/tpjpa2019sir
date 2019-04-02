@@ -1,6 +1,8 @@
 package entities;
 
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,6 +10,9 @@ import java.util.List;
 
 @Entity
 public class Utilisateurs {
+
+    @Id
+    @GeneratedValue
     private int id;
 
     private String nom;
@@ -19,8 +24,12 @@ public class Utilisateurs {
     @ManyToMany(mappedBy="mesUtilisateurs")
     private Collection<Propositions> mesPropositions ;
 
+    @OneToMany(mappedBy = "leResponsable", cascade = CascadeType.REMOVE)
+    @JsonManagedReference
     private List<Sondages> mesSondages = new ArrayList<Sondages>();
 
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.REMOVE)
+    @JsonManagedReference
     private List<Participants> mesParticipations = new ArrayList<Participants>();
 
     public Utilisateurs() {
@@ -32,8 +41,6 @@ public class Utilisateurs {
         this.email = email;
     }
 
-    @Id
-    @GeneratedValue
     public int getId() {
         return id;
     }
@@ -68,7 +75,6 @@ public class Utilisateurs {
 
 
 
-    @OneToMany(mappedBy = "leResponsable", cascade = CascadeType.REMOVE)
     public List<Sondages> getMesSondages() {
         return mesSondages;
     }
@@ -77,7 +83,6 @@ public class Utilisateurs {
         this.mesSondages = mesSondages;
     }
 
-    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.REMOVE)
     public List<Participants> getMesParticipations() {
         return mesParticipations;
     }
