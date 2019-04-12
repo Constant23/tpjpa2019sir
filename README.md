@@ -7,6 +7,7 @@ L’objectif de ce projet est de construire une application type doodle permetan
 des reunion et des propositions de sondage.(#version Api)
 
 # Le diagramme de classe explique :
+# Back end Projet SIR Doodle 
 
 Un utilisateur peut créer un ou plusieurs réunion 
  
