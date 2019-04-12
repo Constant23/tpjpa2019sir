@@ -6,7 +6,7 @@
 L’objectif de ce projet est de construire une application type doodle permetant de creer 
 des reunion et des propositions de sondage.(#version Api)
 
-###Le diagramme de classe explique :
+# Le diagramme de classe explique :
 
 Un utilisateur peut créer un ou plusieurs réunion 
  
