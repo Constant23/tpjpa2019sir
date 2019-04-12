@@ -2,6 +2,7 @@ package rest;
 
 import DAO.UtilisateurDAO;
 import entities.Utilisateurs;
+import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
 import javax.servlet.http.HttpServlet;
@@ -36,6 +37,19 @@ public class UtilisateursService extends HttpServlet {
         try {
             utilisateur = udao.add(user.getString("nom"),user.getString("prenom"),user.getString("email"));
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return utilisateur;
+    }
+
+    @POST
+    @Path("/login")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Utilisateurs getLogin(JSONObject user) {
+        Utilisateurs utilisateur = new Utilisateurs();
+        try {
+            utilisateur = udao.getLogin(user.getString("email"));
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return utilisateur;

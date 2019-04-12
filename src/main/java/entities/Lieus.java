@@ -11,7 +11,9 @@ public class Lieus extends Propositions{
     private static final long serialVersionUID = 1L;
 
     private String lieu;
+    public Lieus() {
 
+    }
     public Lieus(String lieu, Propositions propositions) {
         super(propositions.isEstValider(),propositions.isaUnDejeuner());
         this.lieu = lieu;

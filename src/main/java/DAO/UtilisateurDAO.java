@@ -3,6 +3,8 @@ package DAO;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 import entities.Utilisateurs;
 import jpa.EntityManagerHelper;
@@ -56,5 +58,18 @@ public class UtilisateurDAO {
         tx.begin();
         manager.remove(utilisateurs);
         tx.commit();
+    }
+
+    public Utilisateurs getLogin(String email) {
+        Utilisateurs utilisateurs = null;
+        try{
+            TypedQuery<Utilisateurs> query = manager.createQuery(
+                    "SELECT u FROM Utilisateurs u WHERE u.email = :email", Utilisateurs.class);
+            utilisateurs = query.setParameter("email", email).getSingleResult();
+            } catch (NoResultException nre){
+
+        }
+
+        return utilisateurs;
     }
 }
