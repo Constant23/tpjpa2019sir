@@ -7,7 +7,6 @@ L’objectif de ce projet est de construire une application type doodle permetan
 des reunion et des propositions de sondage.(#version Api)
 
 # Le diagramme de classe explique :
-# Back end Projet SIR Doodle 
 
 Un utilisateur peut créer un ou plusieurs réunion 
  
@@ -26,16 +25,16 @@ leur préférence et allergie
 Package
 Nous avons principalement 3 packages :
 
-##### DAO
+# DAO
 Pour la gestion de la base de données , pour faire les liasons entre les tables tout ce qui est lié aux requêtes avec .merge pour la modification , .persisit pour l’ajout , .delete pour la supression a partir de la classe EntityManager .
 
-##### Entites
+# Entites
 Là où nous avons définit les classes précedentes ( la partie Objects) et les  classes qui servent a la generation du modele de la base de données.
 
-##### Rest
+# Rest
 Dans ce package nous avons geré les ressources rest pour assurer les interactions avec postamn.
 
-###Prerequisites
+# Prerequisites
 Java  -
 Maven -
 Apache tomcat -
@@ -44,7 +43,7 @@ Javax servlet -
 jersey -  
 Postman -
 
-###Installation
+# Installation
 1: Demarer votre server de base de données mysql et creer un base de non dooble
 
 2: Configuration du server
@@ -68,16 +67,16 @@ Clic droit sur votre projet. run as -> maven build …-> mettre tomcat7:run dans
 ou sur intellij 
 Onglet Maven a droite  -> Plugins -> tomcat7 -> double cliquer sur tomcat7:run
 
-###NB  il est demarré sur le port 8181 
+# NB  il est demarré sur le port 8181 
 
 5: Faite vos requetes avec Postman https://www.getpostman.com/ ou autre outil pour les interactions avec les données. Il donc possible de manipuler:
 
 Exemple: 
 
-#####Liste de tout les utilisateurs 
+# Liste de tout les utilisateurs 
 GET http://localhost:8181/rest/utilisateurs 
 
-#####Ajouter un utilisateur 
+# Ajouter un utilisateur 
 POST http://localhost:8181/rest/utilisateurs/add
 
 JSON DATA a utiliser 
@@ -87,13 +86,13 @@ JSON DATA a utiliser
     "email": "andy@niji.Fr"
 }
 
-#####Lister le detail d'un utilisateur 
+# Lister le detail d'un utilisateur 
 GET http://localhost:8181/rest/utilisateurs/6
 
-#####supprimer un utilisateur 
+# supprimer un utilisateur 
 DELETE http://localhost:8181/rest/utilisateurs/delete/6
 
-#####Update un utilisateur 
+# Update un utilisateur 
 POST http://localhost:8181/rest/utilisateurs/update
 
 JSON DATA a utiliser
