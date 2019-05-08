@@ -29,7 +29,8 @@ Nous avons principalement 3 packages :
 Pour la gestion de la base de données , pour faire les liasons entre les tables tout ce qui est lié aux requêtes avec .merge pour la modification , .persisit pour l’ajout , .delete pour la supression a partir de la classe EntityManager .
 
 # Entites
-Là où nous avons définit les classes précedentes ( la partie Objects) et les  classes qui servent a la generation du modele de la base de données.
+Là où nous avons définit les classes précedentes ( la partie Objects) et les  classes qui servent a la generation du modele de la base de données. 
+### Pour l'heritage j'ai implementé la relation Mapping de type JOINED
 
 # Rest
 Dans ce package nous avons geré les ressources rest pour assurer les interactions avec postamn.
