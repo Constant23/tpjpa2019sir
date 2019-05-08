@@ -103,6 +103,7 @@ public class SondageDAO {
         } catch (NoResultException nre){
 
         }
+        System.out.println(11);
 
         return sondages;
     }
